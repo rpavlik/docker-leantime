@@ -8,10 +8,10 @@ services:
       - db_data:/var/lib/mysql
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=${LEAN_SQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${LEAN_DB_DATABASE}
-      - MYSQL_USER=${LEAN_DB_USER}
-      - MYSQL_PASSWORD=${LEAN_DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: "${LEAN_SQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${LEAN_DB_DATABASE}"
+      MYSQL_USER: "${LEAN_DB_USER}"
+      MYSQL_PASSWORD: "${LEAN_DB_PASSWORD}"
     command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
 
   leantime:
@@ -19,15 +19,15 @@ services:
     container_name: leantime
     restart: unless-stopped
     environment:
-      - LEAN_DB_HOST=mysql_leantime
-      - LEAN_APP_URL=${LEAN_APP_URL}
-      - LEAN_SITENAME=${LEAN_SITENAME}
-      - LEAN_DB_USER=${LEAN_DB_USER}
-      - LEAN_DB_PASSWORD=${LEAN_DB_PASSWORD}
-      - LEAN_DB_DATABASE=${LEAN_DB_DATABASE}
-      - LEAN_DEFAULT_TIMEZONE=${LEAN_DEFAULT_TIMEZONE}
-      - LEAN_SESSION_PASSWORD=${LEAN_SESSION_PASSWORD}
-      - LEAN_SESSION_EXPIRATION=${LEAN_SESSION_EXPIRATION}
+      LEAN_DB_HOST: "mysql_leantime"
+      LEAN_APP_URL: "${LEAN_APP_URL}"
+      LEAN_SITENAME: "${LEAN_SITENAME}"
+      LEAN_DB_USER: "${LEAN_DB_USER}"
+      LEAN_DB_PASSWORD: "${LEAN_DB_PASSWORD}"
+      LEAN_DB_DATABASE: "${LEAN_DB_DATABASE}"
+      LEAN_DEFAULT_TIMEZONE: "${LEAN_DEFAULT_TIMEZONE}"
+      LEAN_SESSION_PASSWORD: "${LEAN_SESSION_PASSWORD}"
+      LEAN_SESSION_EXPIRATION: "${LEAN_SESSION_EXPIRATION}"
     volumes:
       - public_userfiles:/var/www/html/public/userfiles
       - userfiles:/var/www/html/userfiles
